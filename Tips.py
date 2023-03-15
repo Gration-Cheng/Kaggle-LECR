@@ -132,30 +132,30 @@ print(topic.content[0].get_all_breadcrumbs())
 # print("Matching:", matching)
 # print("Nonmatching:", nonmatching)
 # print("Percent matching: {:.2f}%".format(100 * matching / (matching + nonmatching)))
-# #
-# topic_id = topics_df.index
-# content_id = content_df.index
-# # #
-# topic_text = []
-# for i in tqdm(topic_id):
-#     text = '['+str(Topic(i).level)+']'+'[SEP]'+Topic(i).title + '[SEP]' + Topic(i).get_breadcrumbs().replace(">>",",") +  '[SEP]' + Topic(
-#         i).description[0:100]
-#     topic_text.append(text)
-# #
-# content_text = []
-# for i in tqdm(content_id):
-#     text =  ContentItem(i).title  + '[SEP]' + ContentItem(i).kind + '[SEP]' +ContentItem(i).text.split("\n")[0][0:200]+'[SEP]'+ContentItem(i).description[0:100]
-#     content_text.append(text)
 #
-# topic = pd.DataFrame(
-#         {'id': topic_id,
-#          'title': topic_text,}
-#     )
-# topic.to_csv('topic_trans.csv', index=False)
+topic_id = topics_df.index
+content_id = content_df.index
 # #
-# content = pd.DataFrame(
-#         {'id': content_id,
-#          'title': content_text,}
-#     )
-# content.to_csv('content_trans.csv', index=False)
+topic_text = []
+for i in tqdm(topic_id):
+    text = '['+str(Topic(i).level)+']'+'[SEP]'+Topic(i).title + '[SEP]' + Topic(i).get_breadcrumbs().replace(">>",",") +  '[SEP]' + Topic(
+        i).description[0:100]
+    topic_text.append(text)
+#
+content_text = []
+for i in tqdm(content_id):
+    text =  ContentItem(i).title  + '[SEP]' + ContentItem(i).kind + '[SEP]' +ContentItem(i).text.split("\n")[0][0:200]+'[SEP]'+ContentItem(i).description[0:100]
+    content_text.append(text)
+
+topic = pd.DataFrame(
+        {'id': topic_id,
+         'title': topic_text,}
+    )
+topic.to_csv('topic_trans.csv', index=False)
+#
+content = pd.DataFrame(
+        {'id': content_id,
+         'title': content_text,}
+    )
+content.to_csv('content_trans.csv', index=False)
 
