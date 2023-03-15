@@ -24,14 +24,17 @@ python Tips.py
     Topic: [level]+[SEP]+title+[SEP]+breadcrumbs+[SEP]+Description(max_len:100 for string level)
     Content: title+[SEP]+kind+[SEP]+text(The first sentence and max_len=200 for string level) + [SEP] + description(max_len=100 for string level)
 
-# Generate stage1 or stage2 pair sentence for training
-python stage1&2_pair4train.py
+# Generate stage1 pair sentence for training
+python stage1_pair4train.py
 
 # Finetune stage1 retriver model using MultiNegative Loss
 python stage1_SB_finetune.py
 
 # Using KNN to validate stage1 model. Focus on the Recall@50
 python KNN.py
+
+# Generate stage2 pair sentence for training, Using the KNN results as hard negative sample and all positive sample in correlation.csv
+python stage2_pair4train.py
 
 #Finetune Stage2 reranker model
 python stage2.py
